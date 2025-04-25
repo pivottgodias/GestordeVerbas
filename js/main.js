@@ -110,16 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       // Mostra previews de imagens
-      document.addEventListener('change', e => {
-        if (e.target.matches('.merch-item-photo')) {
-          const previewContainer = e.target.closest('.form-group').querySelector('.image-preview');
-          UI.showFilePreview(e.target, previewContainer);
-        }
+      // document.addEventListener('change', e => {
+     //   if (e.target.matches('.merch-item-photo')) {
+       //   const previewContainer = e.target.closest('.form-group').querySelector('.image-preview');
+      //    UI.showFilePreview(e.target, previewContainer);
+     //   }
         
-        if (e.target.matches('#dossie_files')) {
-          UI.showFilePreview(e.target, document.getElementById('file-preview'));
-        }
-      });
+     //   if (e.target.matches('#dossie_files')) {
+      //    UI.showFilePreview(e.target, document.getElementById('file-preview'));
+     //   }
+   //   });
       
       // Validação de formulário no submit
       document.getElementById('form-dossie').addEventListener('submit', async e => {
