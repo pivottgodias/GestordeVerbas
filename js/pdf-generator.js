@@ -65,40 +65,45 @@ const PDFGenerator = {
         this.addSectionTitle(doc, 'SELL OUT', y, this.styles.colors.primary);
         y += 8;
         
-       doc.autoTable({ 
-  startY: y,
-  head: [['FAMÍLIA', 'PRODUTO', 'UNIDADES', 'BONIFICAÇÃO (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
-  body: sellOutRows,
-  theme: 'grid',
-  headStyles: { 
-    fillColor: this.styles.colors.primary, 
-    textColor: 255, 
-    fontStyle: 'bold',
-    fontSize: 10,
-    cellPadding: 4
-  },
-  bodyStyles: {
-    fontSize: 9,
-    cellPadding: 4
-  },
-  margin: { left: margin, right: margin },
-  styles: { 
-    overflow: 'linebreak',
-    cellWidth: 'auto',  // Mudança aqui
-    halign: 'center',
-    valign: 'middle'
-  },
-  alternateRowStyles: {
-    fillColor: [248, 250, 252]
-  },
-  columnStyles: {
-    0: { fontStyle: 'bold' },
-    1: { cellWidth: 35 }  // Redução da largura fixa da coluna de produto
-  },
-  // Ativar quebra automática de página
-  pageBreak: 'auto',
-  showHead: 'everyPage'
-});
+        doc.autoTable({ 
+          startY: y,
+          head: [['FAMÍLIA', 'PRODUTO', 'UNIDADES', 'BONIFICAÇÃO (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+          body: sellOutRows,
+          theme: 'grid',
+          headStyles: { 
+            fillColor: this.styles.colors.primary, 
+            textColor: 255, 
+            fontStyle: 'bold',
+            fontSize: 10,
+            cellPadding: 4
+          },
+          bodyStyles: {
+            fontSize: 9,
+            cellPadding: 4
+          },
+          margin: { left: margin, right: margin },
+          styles: { 
+            overflow: 'linebreak',
+            cellWidth: 'wrap',
+            halign: 'center',
+            valign: 'middle'
+          },
+          alternateRowStyles: {
+            fillColor: [248, 250, 252]
+          },
+          columnStyles: {
+            0: { fontStyle: 'bold' }
+          },
+          didParseCell: (data) => {
+            // Aumentar largura das colunas específicas
+            if (data.column.index === 1) { // Coluna de produto
+              data.cell.styles.cellWidth = 40;
+            }
+          }
+        });
+        
+        y = doc.lastAutoTable.finalY + 10;
+      }
       
       // SELL IN com estilo aprimorado
       const sellInRows = this.collectRows('items-container-sell-in', true);
@@ -107,39 +112,44 @@ const PDFGenerator = {
         y += 8;
         
         doc.autoTable({ 
-  startY: y,
-  head: [['FAMÍLIA', 'PRODUTO', 'UNIDADES', 'BONIFICAÇÃO (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
-  body: sellOutRows,
-  theme: 'grid',
-  headStyles: { 
-    fillColor: this.styles.colors.primary, 
-    textColor: 255, 
-    fontStyle: 'bold',
-    fontSize: 10,
-    cellPadding: 4
-  },
-  bodyStyles: {
-    fontSize: 9,
-    cellPadding: 4
-  },
-  margin: { left: margin, right: margin },
-  styles: { 
-    overflow: 'linebreak',
-    cellWidth: 'auto',  // Mudança aqui
-    halign: 'center',
-    valign: 'middle'
-  },
-  alternateRowStyles: {
-    fillColor: [248, 250, 252]
-  },
-  columnStyles: {
-    0: { fontStyle: 'bold' },
-    1: { cellWidth: 35 }  // Redução da largura fixa da coluna de produto
-  },
-  // Ativar quebra automática de página
-  pageBreak: 'auto',
-  showHead: 'everyPage'
-});
+          startY: y,
+          head: [['FAMÍLIA', 'PRODUTO', 'UNIDADES', 'BONIFICAÇÃO (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+          body: sellInRows, 
+          theme: 'grid',
+          headStyles: { 
+            fillColor: this.styles.colors.secondary, 
+            textColor: 255, 
+            fontStyle: 'bold',
+            fontSize: 10,
+            cellPadding: 4
+          },
+          bodyStyles: {
+            fontSize: 9,
+            cellPadding: 4
+          },
+          margin: { left: margin, right: margin },
+          styles: { 
+            overflow: 'linebreak',
+            cellWidth: 'wrap',
+            halign: 'center',
+            valign: 'middle'
+          },
+          alternateRowStyles: {
+            fillColor: [248, 250, 252]
+          },
+          columnStyles: {
+    0: { cellWidth: 25 }, // Família
+    1: { cellWidth: 45 }, // Produto
+    2: { cellWidth: 18 }, // Unidades
+    3: { cellWidth: 25 }, // Bonificação
+    4: { cellWidth: 22 }, // Verba
+    5: { cellWidth: 20 }, // TTC
+    6: { cellWidth: 20 }  // TTV
+  }
+        });
+        
+        y = doc.lastAutoTable.finalY + 10;
+      }
       
       // Verifica se precisa de nova página para o merchandising
       if (y > pageHeight - 100) {
