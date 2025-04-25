@@ -30,8 +30,7 @@ const Templates = {
     
     return { clone, itemId };
   },
-  
-  // Cria um item de merchandising a partir do template
+// Cria um item de merchandising a partir do template
   createMerchItem() {
     const template = document.getElementById('merch-item-template');
     const clone = document.importNode(template.content, true);
