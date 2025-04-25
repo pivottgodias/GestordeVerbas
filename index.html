@@ -31,14 +31,16 @@
             <div class="error-message" id="rede-error"></div>
           </div>
           <div class="form-group">
-            <label for="mercado">Mercado</label>
-            <input id="mercado" name="mercado">
+            <label for="mercado">Mercado <span class="required">*</span></label>
+            <input id="mercado" name="mercado" required aria-required="true">
+            <div class="error-message" id="mercado-error"></div>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label for="cidade">Cidade</label>
-            <input id="cidade" name="cidade">
+            <label for="cidade">Cidade <span class="required">*</span></label>
+            <input id="cidade" name="cidade" required aria-required="true">
+            <div class="error-message" id="cidade-error"></div>
           </div>
           <div class="form-group">
             <label for="uf">UF <span class="required">*</span></label>
@@ -144,7 +146,6 @@
     </button>
   </div>
 
-  <!-- Templates -->
   <template id="item-template">
     <div class="item-row" data-id="{id}">
       <div class="item-header">
@@ -155,18 +156,89 @@
       </div>
       <div class="row">
         <div class="form-group">
-          <label>Família</label>
-          <select name="item_familia[]" class="item-familia">
+          <label>Família <span class="required">*</span></label>
+          <select name="item_familia[]" class="item-familia" required>
             <option value="">Selecione…</option>
           </select>
           <div class="error-message"></div>
         </div>
         <div class="form-group">
-          <label>Produto</label>
-          <select name="item_produto[]" class="item-produto">
+          <label>Produto <span class="required">*</span></label>
+          <select name="item_produto[]" class="item-produto" required>
             <option value="">Selecione…</option>
-          "</template>
+          </select>
+          <div class="error-message"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label>Unidades <span class="required">*</span></label>
+          <input type="number" min="1" class="item-unidades" name="item_unidades[]" required>
+          <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+          <label>Bonificação (R$) <span class="required">*</span></label>
+          <input type="number" step="0.001" min="0" class="item-bonificacao" name="item_bonificacao[]" required>
+          <div class="error-message"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label>Verba (R$)</label>
+          <input type="number" step="0.01" readonly class="item-verba" name="item_verba[]">
+        </div>
+        <div class="form-group">
+          <label>TTC (R$)</label>
+          <input type="number" step="0.01" min="0" name="item_ttc[]">
+        </div>
+        <div class="form-group">
+          <label>TTV (R$)</label>
+          <input type="number" step="0.01" min="0" name="item_ttv[]">
+        </div>
+      </div>
+    </div>
+  </template>
 
+  <template id="merch-item-template">
+    <div class="merch-item-row" data-id="{id}">
+      <div class="item-header">
+        <h4>Item #{number}</h4>
+        <button type="button" class="remove-merch-item btn-icon" title="Remover item" aria-label="Remover item">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label>Verba (R$) <span class="required">*</span></label>
+          <input type="number" step="0.01" min="0" class="merch-item-verba" name="merch_item_verba[]" required>
+          <div class="error-message"></div>
+        </div>
+        <div class="form-group">
+          <label>Opção <span class="required">*</span></label>
+          <select name="merch_item_opcao[]" class="merch-item-opcao" required>
+            <option value="">Selecione…</option>
+            <option>PONTA DE GÔNDOLA</option>
+            <option>ÁREA FRIA</option>
+            <option>PONTO EXTRA</option>
+            <option>OUTRO</option>
+          </select>
+          <div class="error-message"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label>Foto</label>
+          <input type="file" accept="image/*" name="merch_item_photo[]" class="merch-item-photo">
+          <div class="image-preview"></div>
+        </div>
+        <div class="form-group merch-custom-option" style="display:none">
+          <label>Especifique</label>
+          <input type="text" name="merch_item_custom[]" class="merch-item-custom">
+        </div>
+      </div>
+    </div>
+  </template>
+  
   <!-- Inclusão dos scripts externos -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
