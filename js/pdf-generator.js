@@ -67,7 +67,7 @@ const PDFGenerator = {
         
         doc.autoTable({ 
           startY: y,
-          head: [['FAMÍLIA', 'PRODUTO', 'UNIDADES', 'BONIFICAÇÃO (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+          head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
           body: sellOutRows,
           theme: 'grid',
           headStyles: { 
@@ -113,7 +113,7 @@ const PDFGenerator = {
         
         doc.autoTable({ 
           startY: y,
-          head: [['FAMÍLIA', 'PRODUTO', 'UNIDADES', 'BONIFICAÇÃO (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+          head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
           body: sellInRows, 
           theme: 'grid',
           headStyles: { 
@@ -138,14 +138,13 @@ const PDFGenerator = {
             fillColor: [248, 250, 252]
           },
           columnStyles: {
-    0: { cellWidth: 25 }, // Família
-    1: { cellWidth: 45 }, // Produto
-    2: { cellWidth: 18 }, // Unidades
-    3: { cellWidth: 25 }, // Bonificação
-    4: { cellWidth: 22 }, // Verba
-    5: { cellWidth: 20 }, // TTC
-    6: { cellWidth: 20 }  // TTV
-  }
+            0: { fontStyle: 'bold' }
+          },
+          didParseCell: (data) => {
+            if (data.column.index === 1) {
+              data.cell.styles.cellWidth = 40;
+            }
+          }
         });
         
         y = doc.lastAutoTable.finalY + 10;
