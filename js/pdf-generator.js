@@ -485,15 +485,13 @@ const PDFGenerator = {
     }
   },
   
-  // Adiciona anexos com página separadora
+  // Adiciona anexos com página separadora (COMENTADA)
   async addAttachmentsWithSeparator(pdfDoc, fileList) {
     if (fileList && fileList.length > 0) {
-      // Adicionar página separadora
+      /* Comentado a página separadora
       const separatorPage = pdfDoc.addPage([595, 841]);
       const { width, height } = separatorPage.getSize();
       
-      // Título da seção de anexos
-      const helveticaBold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
       separatorPage.drawRectangle({
         x: 0,
         y: height - 100,
@@ -502,6 +500,7 @@ const PDFGenerator = {
         color: PDFLib.rgb(0.2, 0.3, 0.4)
       });
       
+      const helveticaBold = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
       separatorPage.drawText('ANEXOS', {
         x: width / 2 - 60,
         y: height - 60,
@@ -509,7 +508,8 @@ const PDFGenerator = {
         font: helveticaBold,
         color: PDFLib.rgb(1, 1, 1)
       });
-      
+      */
+
       // Adicionar os anexos
       for (const file of fileList) {
         const buf = await file.arrayBuffer();
@@ -522,7 +522,6 @@ const PDFGenerator = {
             ? await pdfDoc.embedPng(buf)
             : await pdfDoc.embedJpg(buf);
           
-          // Calcular dimensões para caber na página com margens
           const margin = 50;
           const maxWidth = 595 - (margin * 2);
           const maxHeight = 841 - (margin * 2);
@@ -531,7 +530,6 @@ const PDFGenerator = {
           
           const pg = pdfDoc.addPage([595, 841]);
           
-          // Centralizar imagem na página
           pg.drawImage(img, {
             x: (595 - width) / 2,
             y: (841 - height) / 2,
@@ -543,13 +541,13 @@ const PDFGenerator = {
     }
   },
   
-  // Adiciona fotos de merchandising com layout melhorado
+  // Adiciona fotos de merchandising com layout melhorado (SEPARADORA COMENTADA)
   async addEnhancedMerchandisingPhotos(pdfDoc, merchPhotosData) {
     const helvB = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
     const helv = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
     
     if (merchPhotosData.length > 0) {
-      // Adicionar página separadora
+      /* Comentado a página separadora
       const separatorPage = pdfDoc.addPage([595, 841]);
       separatorPage.drawRectangle({
         x: 0,
@@ -566,6 +564,7 @@ const PDFGenerator = {
         font: helvB,
         color: PDFLib.rgb(0.2, 0.2, 0.2)
       });
+      */
     }
     
     for (let i = 0; i < merchPhotosData.length; i++) {
@@ -597,14 +596,12 @@ const PDFGenerator = {
         color: PDFLib.rgb(0.2, 0.2, 0.2)
       });
       
-      // Calcular dimensões para caber na página com margens
       const margin = 50;
       const maxWidth = 595 - (margin * 2);
-      const maxHeight = 700;  // Deixar espaço para o título
+      const maxHeight = 700;
       
       const { width, height } = img.scaleToFit(maxWidth, maxHeight);
       
-      // Adicionar borda decorativa em torno da imagem
       pg.drawRectangle({
         x: (595 - width - 10) / 2,
         y: (791 - height - 10) / 2 - 30,
@@ -615,7 +612,6 @@ const PDFGenerator = {
         color: PDFLib.rgb(1, 1, 1)
       });
       
-      // Desenhar a imagem centralizada
       pg.drawImage(img, {
         x: (595 - width) / 2,
         y: (791 - height) / 2 - 30,
@@ -623,7 +619,6 @@ const PDFGenerator = {
         height
       });
       
-      // Adicionar rodapé com informações
       pg.drawText(`Página ${i + 1} de ${merchPhotosData.filter(p => p).length}`, {
         x: 295,
         y: 30,
@@ -635,7 +630,7 @@ const PDFGenerator = {
     }
   },
   
-  // Métodos auxiliares do código original mantidos
+  // Métodos auxiliares mantidos
   readFileAsDataURL(file) {
     return new Promise(resolve => {
       if (!file) resolve(null);
