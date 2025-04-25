@@ -50,7 +50,6 @@ const Templates = {
     return { clone, itemId };
   },
   
-// templates.js (continuação)
   // Cria um item de merchandising a partir do template
   createMerchItem() {
     const template = document.getElementById('merch-item-template');
