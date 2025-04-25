@@ -37,4 +37,21 @@ const Templates = {
     const clone = document.importNode(template.content, true);
     const itemId = this.generateId();
     const container = document.getElementById('merch-items-container');
-    const itemCount = container.querySelectorAll
+    const itemCount = container.querySelectorAll('.merch-item-row').length + 1;
+    
+    // Configura o clone com identificadores únicos
+    const itemRow = clone.querySelector('.merch-item-row');
+    itemRow.dataset.id = itemId;
+    itemRow.querySelector('h4').textContent = `Item #${itemCount}`;
+    
+    return { clone, itemId };
+  },
+  
+  // Renumera os itens para manter a sequência após remoção
+  renumberItems(containerId) {
+    const items = document.querySelectorAll(`#${containerId} .item-row, #${containerId} .merch-item-row`);
+    items.forEach((item, index) => {
+      item.querySelector('h4').textContent = `Item #${index + 1}`;
+    });
+  }
+};
