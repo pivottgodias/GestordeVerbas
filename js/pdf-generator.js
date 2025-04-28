@@ -252,7 +252,18 @@ doc.autoTable({
       await this.addEnhancedMerchandisingPhotos(pdfDoc, merchPhotosData);
       
       const finalBytes = await pdfDoc.save();
-      download(finalBytes, `dossie_${formData.rede || 'sem-rede'}_${new Date().toISOString().split('T')[0]}.pdf`, 'application/pdf');
+      
+      // Formatação da data no padrão DD-MM-YYYY para usar no nome do arquivo
+const dataHoje = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+
+// Formatação do nome do arquivo seguindo o padrão solicitado
+const nomeArquivo = `${formData.rede || 'sem-rede'}-${formData.vendedor || 'sem-vendedor'}-${formData.contrato || 'sem-contrato'}-${formData.uf || 'sem-estado'}-${dataHoje}.pdf`;
+
+// Substitua caracteres problemáticos para nomes de arquivo
+const nomeArquivoSeguro = nomeArquivo.replace(/[\\/:*?"<>|]/g, '_');
+
+// Inicia o download com o novo nome de arquivo
+download(finalBytes, nomeArquivoSeguro, 'application/pdf');
       
       UI.hideLoading();
       UI.showToast('Dossiê gerado com sucesso!', 'success');
