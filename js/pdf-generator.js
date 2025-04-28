@@ -247,7 +247,7 @@ doc.autoTable({
 
       // Verificar se há espaço suficiente para as assinaturas
 
-      / Se não houver, adicionar uma nova página
+      // Se não houver, adicionar uma nova página
       const spaceNeededForSignatures = 60; // Ajuste esse valor conforme necessário
       if (y + spaceNeededForSignatures > pageHeight - margin) {
       doc.addPage();
