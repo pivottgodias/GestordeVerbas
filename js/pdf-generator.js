@@ -1,5 +1,5 @@
 // pdfGenerator.js - Geração de PDF Aprimorado Visualmente
-const PDFGenerator = {
+window.PDFGenerator = {
   // Configuração de cores e estilos
   styles: {
     colors: {
