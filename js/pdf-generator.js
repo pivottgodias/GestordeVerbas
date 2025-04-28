@@ -227,6 +227,13 @@ doc.autoTable({
       sellInRows.forEach(r => totalSellIn += parseFloat(r[4]) || 0);
       merchRows.forEach(r => totalMerch += parseFloat(r[0]) || 0);
       const totalGeral = totalSellOut + totalSellIn + totalMerch;
+
+      // Verifica tamanho da página
+
+      if (y > pageHeight - 100) {
+  doc.addPage();
+  y = margin;
+}
       
       // Adicionar resumo financeiro em formato de caixa destacada
       y = this.addTotalsBox(doc, {
@@ -237,6 +244,15 @@ doc.autoTable({
       }, y);
       
       y += 15;
+
+      // Verificar se há espaço suficiente para as assinaturas
+
+      / Se não houver, adicionar uma nova página
+      const spaceNeededForSignatures = 60; // Ajuste esse valor conforme necessário
+      if (y + spaceNeededForSignatures > pageHeight - margin) {
+      doc.addPage();
+        y = margin;
+      }
       
       // Assinaturas com layout melhorado
       this.addSignatureSection(doc, y, totalGeral >= 15000);
