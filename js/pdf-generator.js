@@ -65,29 +65,33 @@ const PDFGenerator = {
         this.addSectionTitle(doc, 'SELL OUT', y, this.styles.colors.primary);
         y += 8;
         
-        doc.autoTable({ 
-          startY: y,
-          head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
-          body: sellOutRows,
-          theme: 'grid',
-          headStyles: { 
-            fillColor: this.styles.colors.primary, 
-            textColor: 255, 
-            fontStyle: 'bold',
-            fontSize: 10,
-            cellPadding: 4
-          },
-          bodyStyles: {
-            fontSize: 9,
-            cellPadding: 4
-          },
-          margin: { left: margin, right: margin },
-          styles: { 
-            overflow: 'linebreak',
-            cellWidth: 'wrap',
-            halign: 'center',
-            valign: 'middle'
-          },
+        // Modifique as configurações das tabelas autoTable no método generateDossie
+// Procure os blocos doc.autoTable nas seções de SELL OUT e SELL IN
+
+// Para a tabela SELL OUT, ajuste:
+doc.autoTable({ 
+  startY: y,
+  head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+  body: sellOutRows,
+  theme: 'grid',
+  headStyles: { 
+    fillColor: this.styles.colors.primary, 
+    textColor: 255, 
+    fontStyle: 'bold',
+    fontSize: 9, // Reduzido de 10 para 9
+    cellPadding: 3 // Reduzido de 4 para 3
+  },
+  bodyStyles: {
+    fontSize: 8, // Reduzido de 9 para 8
+    cellPadding: 3 // Reduzido de 4 para 3
+  },
+  margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
+  styles: { 
+    overflow: 'linebreak',
+    cellWidth: 'auto', // Mudado de 'wrap' para 'auto'
+    halign: 'center',
+    valign: 'middle'
+  },
           alternateRowStyles: {
             fillColor: [248, 250, 252]
           },
@@ -112,28 +116,28 @@ const PDFGenerator = {
         y += 8;
         
         doc.autoTable({ 
-          startY: y,
-          head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
-          body: sellInRows, 
-          theme: 'grid',
-          headStyles: { 
-            fillColor: this.styles.colors.secondary, 
-            textColor: 255, 
-            fontStyle: 'bold',
-            fontSize: 10,
-            cellPadding: 4
-          },
-          bodyStyles: {
-            fontSize: 9,
-            cellPadding: 4
-          },
-          margin: { left: margin, right: margin },
-          styles: { 
-            overflow: 'linebreak',
-            cellWidth: 'wrap',
-            halign: 'center',
-            valign: 'middle'
-          },
+  startY: y,
+  head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+  body: sellInRows, 
+  theme: 'grid',
+  headStyles: { 
+    fillColor: this.styles.colors.secondary, 
+    textColor: 255, 
+    fontStyle: 'bold',
+    fontSize: 9, // Reduzido de 10 para 9
+    cellPadding: 3 // Reduzido de 4 para 3
+  },
+  bodyStyles: {
+    fontSize: 8, // Reduzido de 9 para 8
+    cellPadding: 3 // Reduzido de 4 para 3
+  },
+  margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
+  styles: { 
+    overflow: 'linebreak',
+    cellWidth: 'auto', // Mudado de 'wrap' para 'auto'
+    halign: 'center',
+    valign: 'middle'
+  },
           alternateRowStyles: {
             fillColor: [248, 250, 252]
           },
@@ -163,25 +167,25 @@ const PDFGenerator = {
         y += 8;
         
         doc.autoTable({
-          startY: y,
-          head: [['VERBA (R$)', 'OPÇÃO', 'FOTO']],
-          body: merchRows.map((r, i) => [r[0], r[1], '']),
-          theme: 'grid',
-          styles: { 
-            cellPadding: 6,
-            fontSize: 9
-          },
-          columnStyles: { 
-            2: { cellWidth: 30 },
-            1: { cellWidth: 70 }
-          },
-          headStyles: { 
-            fillColor: this.styles.colors.accent, 
-            textColor: 0, 
-            fontStyle: 'bold',
-            fontSize: 10
-          },
-          margin: { left: margin, right: margin },
+  startY: y,
+  head: [['VERBA (R$)', 'OPÇÃO', 'FOTO']],
+  body: merchRows.map((r, i) => [r[0], r[1], '']),
+  theme: 'grid',
+  styles: { 
+    cellPadding: 4, // Reduzido de 6 para 4
+    fontSize: 8 // Reduzido de 9 para 8
+  },
+  columnStyles: { 
+    2: { cellWidth: 25 }, // Reduzido de 30 para 25
+    1: { cellWidth: 65 } // Reduzido de 70 para 65
+  },
+  headStyles: { 
+    fillColor: this.styles.colors.accent, 
+    textColor: 0, 
+    fontStyle: 'bold',
+    fontSize: 9 // Reduzido de 10 para 9
+  },
+  margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
           alternateRowStyles: {
             fillColor: [248, 250, 252]
           },
