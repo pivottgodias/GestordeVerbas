@@ -65,33 +65,29 @@ const PDFGenerator = {
         this.addSectionTitle(doc, 'SELL OUT', y, this.styles.colors.primary);
         y += 8;
         
-        // Modifique as configurações das tabelas autoTable no método generateDossie
-// Procure os blocos doc.autoTable nas seções de SELL OUT e SELL IN
-
-// Para a tabela SELL OUT, ajuste:
-doc.autoTable({ 
-  startY: y,
-  head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
-  body: sellOutRows,
-  theme: 'grid',
-  headStyles: { 
-    fillColor: this.styles.colors.primary, 
-    textColor: 255, 
-    fontStyle: 'bold',
-    fontSize: 9, // Reduzido de 10 para 9
-    cellPadding: 3 // Reduzido de 4 para 3
-  },
-  bodyStyles: {
-    fontSize: 8, // Reduzido de 9 para 8
-    cellPadding: 3 // Reduzido de 4 para 3
-  },
-  margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
-  styles: { 
-    overflow: 'linebreak',
-    cellWidth: 'auto', // Mudado de 'wrap' para 'auto'
-    halign: 'center',
-    valign: 'middle'
-  },
+        doc.autoTable({ 
+          startY: y,
+          head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+          body: sellOutRows,
+          theme: 'grid',
+          headStyles: { 
+            fillColor: this.styles.colors.primary, 
+            textColor: 255, 
+            fontStyle: 'bold',
+            fontSize: 9, // Reduzido de 10 para 9
+            cellPadding: 3 // Reduzido de 4 para 3
+          },
+          bodyStyles: {
+            fontSize: 8, // Reduzido de 9 para 8
+            cellPadding: 3 // Reduzido de 4 para 3
+          },
+          margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
+          styles: { 
+            overflow: 'linebreak',
+            cellWidth: 'auto', // Mudado de 'wrap' para 'auto'
+            halign: 'center',
+            valign: 'middle'
+          },
           alternateRowStyles: {
             fillColor: [248, 250, 252]
           },
@@ -116,28 +112,28 @@ doc.autoTable({
         y += 8;
         
         doc.autoTable({ 
-  startY: y,
-  head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
-  body: sellInRows, 
-  theme: 'grid',
-  headStyles: { 
-    fillColor: this.styles.colors.secondary, 
-    textColor: 255, 
-    fontStyle: 'bold',
-    fontSize: 9, // Reduzido de 10 para 9
-    cellPadding: 3 // Reduzido de 4 para 3
-  },
-  bodyStyles: {
-    fontSize: 8, // Reduzido de 9 para 8
-    cellPadding: 3 // Reduzido de 4 para 3
-  },
-  margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
-  styles: { 
-    overflow: 'linebreak',
-    cellWidth: 'auto', // Mudado de 'wrap' para 'auto'
-    halign: 'center',
-    valign: 'middle'
-  },
+          startY: y,
+          head: [['FAMÍLIA', 'PRODUTO', 'UND', 'BON. (R$)', 'VERBA (R$)', 'TTC (R$)', 'TTV (R$)']],
+          body: sellInRows, 
+          theme: 'grid',
+          headStyles: { 
+            fillColor: this.styles.colors.secondary, 
+            textColor: 255, 
+            fontStyle: 'bold',
+            fontSize: 9, // Reduzido de 10 para 9
+            cellPadding: 3 // Reduzido de 4 para 3
+          },
+          bodyStyles: {
+            fontSize: 8, // Reduzido de 9 para 8
+            cellPadding: 3 // Reduzido de 4 para 3
+          },
+          margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
+          styles: { 
+            overflow: 'linebreak',
+            cellWidth: 'auto', // Mudado de 'wrap' para 'auto'
+            halign: 'center',
+            valign: 'middle'
+          },
           alternateRowStyles: {
             fillColor: [248, 250, 252]
           },
@@ -167,25 +163,25 @@ doc.autoTable({
         y += 8;
         
         doc.autoTable({
-  startY: y,
-  head: [['VERBA (R$)', 'OPÇÃO', 'FOTO']],
-  body: merchRows.map((r, i) => [r[0], r[1], '']),
-  theme: 'grid',
-  styles: { 
-    cellPadding: 4, // Reduzido de 6 para 4
-    fontSize: 8 // Reduzido de 9 para 8
-  },
-  columnStyles: { 
-    2: { cellWidth: 25 }, // Reduzido de 30 para 25
-    1: { cellWidth: 65 } // Reduzido de 70 para 65
-  },
-  headStyles: { 
-    fillColor: this.styles.colors.accent, 
-    textColor: 0, 
-    fontStyle: 'bold',
-    fontSize: 9 // Reduzido de 10 para 9
-  },
-  margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
+          startY: y,
+          head: [['VERBA (R$)', 'OPÇÃO', 'FOTO']],
+          body: merchRows.map((r, i) => [r[0], r[1], '']),
+          theme: 'grid',
+          styles: { 
+            cellPadding: 4, // Reduzido de 6 para 4
+            fontSize: 8 // Reduzido de 9 para 8
+          },
+          columnStyles: { 
+            2: { cellWidth: 25 }, // Reduzido de 30 para 25
+            1: { cellWidth: 65 } // Reduzido de 70 para 65
+          },
+          headStyles: { 
+            fillColor: this.styles.colors.accent, 
+            textColor: 0, 
+            fontStyle: 'bold',
+            fontSize: 9 // Reduzido de 10 para 9
+          },
+          margin: { left: 15, right: 15 }, // Reduz de margin (20) para 15
           alternateRowStyles: {
             fillColor: [248, 250, 252]
           },
@@ -229,11 +225,10 @@ doc.autoTable({
       const totalGeral = totalSellOut + totalSellIn + totalMerch;
 
       // Verifica tamanho da página
-
       if (y > pageHeight - 100) {
-  doc.addPage();
-  y = margin;
-}
+        doc.addPage();
+        y = margin;
+      }
       
       // Adicionar resumo financeiro em formato de caixa destacada
       y = this.addTotalsBox(doc, {
@@ -246,11 +241,10 @@ doc.autoTable({
       y += 15;
 
       // Verificar se há espaço suficiente para as assinaturas
-
       // Se não houver, adicionar uma nova página
       const spaceNeededForSignatures = 60; // Ajuste esse valor conforme necessário
       if (y + spaceNeededForSignatures > pageHeight - margin) {
-      doc.addPage();
+        doc.addPage();
         y = margin;
       }
       
@@ -270,16 +264,30 @@ doc.autoTable({
       const finalBytes = await pdfDoc.save();
       
       // Formatação da data no padrão DD-MM-YYYY para usar no nome do arquivo
-const dataHoje = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
+      const dataHoje = new Date().toLocaleDateString('pt-BR').replace(/\//g, '-');
 
-// Formatação do nome do arquivo seguindo o padrão solicitado
-const nomeArquivo = `${formData.rede || 'sem-rede'}-${formData.vendedor || 'sem-vendedor'}-${formData.contrato || 'sem-contrato'}-${formData.uf || 'sem-estado'}-${dataHoje}.pdf`;
+      // Formatação do nome do arquivo seguindo o padrão solicitado
+      const nomeArquivo = `${formData.rede || 'sem-rede'}-${formData.vendedor || 'sem-vendedor'}-${formData.contrato || 'sem-contrato'}-${formData.uf || 'sem-estado'}-${dataHoje}.pdf`;
 
-// Substitua caracteres problemáticos para nomes de arquivo
-const nomeArquivoSeguro = nomeArquivo.replace(/[\\/:*?"<>|]/g, '_');
+      // Substitui caracteres problemáticos para nomes de arquivo
+      const nomeArquivoSeguro = nomeArquivo.replace(/[\\/:*?"<>|]/g, '_');
 
-// Inicia o download com o novo nome de arquivo
-download(finalBytes, nomeArquivoSeguro, 'application/pdf');
+      // Inicia o download com o novo nome de arquivo
+      // Verifica se a função download existe no escopo global
+      if (typeof download === 'function') {
+        download(finalBytes, nomeArquivoSeguro, 'application/pdf');
+      } else {
+        // Alternativa caso a função download não esteja disponível
+        const blob = new Blob([finalBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = nomeArquivoSeguro;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
       
       UI.hideLoading();
       UI.showToast('Dossiê gerado com sucesso!', 'success');
@@ -516,7 +524,7 @@ download(finalBytes, nomeArquivoSeguro, 'application/pdf');
     }
   },
   
-  // Adiciona anexos com página separadora (COMENTADA)
+  // Adiciona anexos com página separadora
   async addAttachmentsWithSeparator(pdfDoc, fileList) {
     if (fileList && fileList.length > 0) {
       /* Comentado a página separadora
@@ -572,7 +580,7 @@ download(finalBytes, nomeArquivoSeguro, 'application/pdf');
     }
   },
   
-  // Adiciona fotos de merchandising com layout melhorado (SEPARADORA COMENTADA)
+  // Adiciona fotos de merchandising com layout melhorado
   async addEnhancedMerchandisingPhotos(pdfDoc, merchPhotosData) {
     const helvB = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
     const helv = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
@@ -661,7 +669,7 @@ download(finalBytes, nomeArquivoSeguro, 'application/pdf');
     }
   },
   
-  // Métodos auxiliares mantidos
+  // Métodos auxiliares
   readFileAsDataURL(file) {
     return new Promise(resolve => {
       if (!file) resolve(null);
