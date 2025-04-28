@@ -486,3 +486,20 @@
       display: none;
     }
   }
+
+.clear-item-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px;
+    z-index: 10;
+}
+
+.clear-item-btn:hover {
+    color: #000;
+}
